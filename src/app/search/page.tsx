@@ -70,8 +70,10 @@ export default function SearchPage() {
             {/* RESTAURANT CAR */}
             <div className='border-b flex pb-5'>
               <Image
-                src='https://images.otstatic.com/prod1/49153814/2/medium.jpg'
-                alt=''
+                src='/plate-of-food.jpg'
+                alt='plate of food'
+                width={100}
+                height={100}
                 className='w-44 rounded'
               />
               <div className='pl-5'>

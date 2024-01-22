@@ -27,8 +27,10 @@ export default function ReservePage() {
               <h3 className='font-bold'>You&apos;re almost done!</h3>
               <div className='mt-5 flex'>
                 <Image
-                  src='https://images.otstatic.com/prod1/49153814/2/medium.jpg'
-                  alt=''
+                  src='/plate-of-food.jpg'
+                  alt='plate of food'
+                  width={100}
+                  height={100}
                   className='w-32 h-18 rounded'
                 />
                 <div className='ml-4'>

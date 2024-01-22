@@ -46,8 +46,10 @@ export default function HomePage() {
             {/* CARD */}
             <div className='w-64 h-72 m-3 rounded overflow-hidden border cursor-pointer'>
               <Image
-                src='https://resizer.otstatic.com/v2/photos/wide-huge/2/31852905.jpg'
-                alt=''
+                src='/rice-with-chicken.jpg'
+                alt='rice with chicken'
+                width={100}
+                height={100}
                 className='w-full h-36'
               />
               <div className='p-1'>

@@ -74,28 +74,38 @@ export default function RestaurantDetailPage() {
               <div className='flex flex-wrap'>
                 <Image
                   className='w-56 h-44 mr-1 mb-1'
-                  src='https://resizer.otstatic.com/v2/photos/xlarge/3/41701449.jpg'
-                  alt=''
+                  src='/rice-with-chicken.jpg'
+                  alt='rice with chicken'
+                  width={100}
+                  height={100}
                 />
                 <Image
                   className='w-56 h-44 mr-1 mb-1'
-                  src='https://resizer.otstatic.com/v2/photos/xlarge/2/41701450.jpg'
-                  alt=''
+                  src='/plate-with-bread.jpg'
+                  alt='plate with bread'
+                  width={0}
+                  height={0}
                 />
                 <Image
                   className='w-56 h-44 mr-1 mb-1'
-                  src='https://resizer.otstatic.com/v2/photos/xlarge/2/41701452.jpg'
-                  alt=''
+                  src='/wine-and-food.jpg'
+                  alt='wine and food'
+                  width={0}
+                  height={0}
                 />
                 <Image
                   className='w-56 h-44 mr-1 mb-1'
-                  src='https://resizer.otstatic.com/v2/photos/xlarge/2/41701453.jpg'
-                  alt=''
+                  src='/cake-with-cream.jpg'
+                  alt='cake with cream'
+                  width={0}
+                  height={0}
                 />
                 <Image
                   className='w-56 h-44 mr-1 mb-1'
-                  src='https://resizer.otstatic.com/v2/photos/xlarge/2/41701454.jpg'
-                  alt=''
+                  src='/shrimp-and-chips.jpg'
+                  alt='shrimp and chips'
+                  width={0}
+                  height={0}
                 />
               </div>
             </div>
