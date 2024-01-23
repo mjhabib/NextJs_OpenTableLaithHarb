@@ -6,16 +6,52 @@ import RestaurantRate from './RestaurantRate';
 import RestaurantReserveCard from './RestaurantReserveCard';
 import RestaurantReview from './RestaurantReview';
 import RestaurantTitle from './RestaurantTitle';
+import db from '@root/prisma/db';
 
-export default function RestaurantDetailPage() {
+interface Restaurant {
+  id: number;
+  name: string;
+  images: string[];
+  description: string;
+  slug: string;
+}
+
+export const fetchRestaurantBySlug = async (
+  slug: string
+): Promise<Restaurant> => {
+  const restaurant = await db.restaurant.findUnique({
+    where: { slug },
+    select: {
+      id: true,
+      name: true,
+      images: true,
+      description: true,
+      slug: true,
+    },
+  });
+
+  if (!restaurant) {
+    throw new Error('Something went wrong!');
+  }
+
+  return restaurant;
+};
+
+interface Props {
+  params: { slug: string };
+}
+
+export default async function RestaurantDetailPage({ params }: Props) {
+  const restaurant = await fetchRestaurantBySlug(params.slug);
+
   return (
     <>
       <div className='bg-white w-[70%] rounded p-3 shadow'>
-        <RestaurantNavbar />
-        <RestaurantTitle />
+        <RestaurantNavbar slug={restaurant.slug} />
+        <RestaurantTitle name={restaurant.name} />
         <RestaurantRate />
-        <RestaurantDescription />
-        <RestaurantImage />
+        <RestaurantDescription description={restaurant.description} />
+        <RestaurantImage key={restaurant.id} images={restaurant.images} />
         <RestaurantReview />
       </div>
       <div className='w-[27%] relative text-reg'>
