@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { RestaurantCardTypes } from './page';
 import Link from 'next/link';
-import HomePrice from './HomePrice';
+import Price from '../components/Price';
 
 export interface Props {
   restaurant: RestaurantCardTypes;
@@ -26,7 +26,7 @@ export default function HomeRestaurantCard({ restaurant }: Props) {
           </div>
           <div className='flex text-reg font-light capitalize'>
             <p className=' mr-3'>{restaurant.cuisine.name}</p>
-            <HomePrice price={restaurant.price} />
+            <Price price={restaurant.price} />
             <p>{restaurant.location.name}</p>
           </div>
           <p className='text-sm mt-1 font-bold'>Booked 3 times today</p>
