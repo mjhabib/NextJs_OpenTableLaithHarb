@@ -1,7 +1,7 @@
 import db from '@root/prisma/db';
 import HomeHeader from './HomeHeader';
 import HomeRestaurantCard from './HomeRestaurantCard';
-import { Cuisine, PRICE, Location } from '@prisma/client';
+import { Cuisine, PRICE, Location, Review } from '@prisma/client';
 
 export interface RestaurantCardTypes {
   id: number;
@@ -11,6 +11,7 @@ export interface RestaurantCardTypes {
   location: Location;
   price: PRICE;
   slug: string;
+  review: Review[];
 }
 
 export const fetchRestaurant = async (): Promise<RestaurantCardTypes[]> => {
@@ -23,6 +24,7 @@ export const fetchRestaurant = async (): Promise<RestaurantCardTypes[]> => {
       location: true,
       price: true,
       slug: true,
+      review: true,
     },
   });
 

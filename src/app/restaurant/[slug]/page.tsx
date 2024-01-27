@@ -7,6 +7,7 @@ import RestaurantReserveCard from './RestaurantReserveCard';
 import RestaurantReview from './RestaurantReview';
 import RestaurantTitle from './RestaurantTitle';
 import db from '@root/prisma/db';
+import { Review } from '@prisma/client';
 
 interface Restaurant {
   id: number;
@@ -14,6 +15,7 @@ interface Restaurant {
   images: string[];
   description: string;
   slug: string;
+  review: Review[];
 }
 
 export const fetchRestaurantBySlug = async (
@@ -27,6 +29,7 @@ export const fetchRestaurantBySlug = async (
       images: true,
       description: true,
       slug: true,
+      review: true,
     },
   });
 
@@ -49,10 +52,10 @@ export default async function RestaurantDetailPage({ params }: Props) {
       <div className='bg-white w-[70%] rounded p-3 shadow'>
         <RestaurantNavbar slug={restaurant.slug} />
         <RestaurantTitle name={restaurant.name} />
-        <RestaurantRate />
+        <RestaurantRate reviews={restaurant.review} />
         <RestaurantDescription description={restaurant.description} />
         <RestaurantImage key={restaurant.id} images={restaurant.images} />
-        <RestaurantReview />
+        <RestaurantReview reviews={restaurant.review} />
       </div>
       <div className='w-[27%] relative text-reg'>
         <RestaurantReserveCard />

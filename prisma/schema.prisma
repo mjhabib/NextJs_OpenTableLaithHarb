@@ -20,13 +20,14 @@ model Restaurant {
   close_time  String
   slug        String   @unique
   price       PRICE
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
   items       Item[]
   location_id Int
   location    Location @relation(fields: [location_id], references: [id])
   cuisine_id  Int
   cuisine     Cuisine  @relation(fields: [cuisine_id], references: [id])
+  review      Review[]
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
 }
 
 enum PRICE {
@@ -40,24 +41,51 @@ model Item {
   name          String
   description   String
   price         String
-  created_at    DateTime   @default(now())
-  updated_at    DateTime   @updatedAt
   restaurant_id Int
   restaurant    Restaurant @relation(fields: [restaurant_id], references: [id])
+  created_at    DateTime   @default(now())
+  updated_at    DateTime   @updatedAt
 }
 
 model Location {
   id          Int          @id @default(autoincrement())
   name        String
+  restaurants Restaurant[]
   created_at  DateTime     @default(now())
   updated_at  DateTime     @updatedAt
-  restaurants Restaurant[]
 }
 
 model Cuisine {
   id          Int          @id @default(autoincrement())
   name        String
+  restaurants Restaurant[]
   created_at  DateTime     @default(now())
   updated_at  DateTime     @updatedAt
-  restaurants Restaurant[]
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  f_name     String
+  l_name     String
+  email      String
+  city       String
+  pass       String
+  phone      String
+  review     Review[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Review {
+  id            Int        @id @default(autoincrement())
+  f_name        String
+  l_name        String
+  text          String
+  rating        Float
+  restaurant_id Int
+  restaurant    Restaurant @relation(fields: [restaurant_id], references: [id])
+  user_id       Int
+  user          User       @relation(fields: [user_id], references: [id])
+  created_at    DateTime   @default(now())
+  updated_at    DateTime   @updatedAt
 }
