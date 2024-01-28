@@ -8,6 +8,7 @@ import RestaurantReview from './RestaurantReview';
 import RestaurantTitle from './RestaurantTitle';
 import db from '@root/prisma/db';
 import { Review } from '@prisma/client';
+import { notFound } from 'next/navigation';
 
 interface Restaurant {
   id: number;
@@ -34,7 +35,7 @@ export const fetchRestaurantBySlug = async (
   });
 
   if (!restaurant) {
-    throw new Error('Something went wrong!');
+    notFound();
   }
 
   return restaurant;
