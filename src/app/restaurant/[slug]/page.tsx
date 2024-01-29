@@ -16,6 +16,8 @@ interface Restaurant {
   images: string[];
   description: string;
   slug: string;
+  open_time: string;
+  close_time: string;
   review: Review[];
 }
 
@@ -31,6 +33,8 @@ export const fetchRestaurantBySlug = async (
       description: true,
       slug: true,
       review: true,
+      open_time: true,
+      close_time: true,
     },
   });
 
@@ -50,16 +54,27 @@ export default async function RestaurantDetailPage({ params }: Props) {
 
   return (
     <>
-      <div className='bg-white w-[70%] rounded p-3 shadow'>
-        <RestaurantNavbar slug={restaurant.slug} />
-        <RestaurantTitle name={restaurant.name} />
-        <RestaurantRate reviews={restaurant.review} />
-        <RestaurantDescription description={restaurant.description} />
-        <RestaurantImage key={restaurant.id} images={restaurant.images} />
-        <RestaurantReview reviews={restaurant.review} />
-      </div>
-      <div className='w-[27%] relative text-reg'>
-        <RestaurantReserveCard />
+      <div className='flex flex-wrap justify-between'>
+        <div className='w-[68%]'>
+          <div className='bg-white rounded p-3 shadow'>
+            <RestaurantNavbar slug={restaurant.slug} />
+            <RestaurantTitle name={restaurant.name} />
+            <RestaurantRate reviews={restaurant.review} />
+            <RestaurantDescription description={restaurant.description} />
+
+            <RestaurantImage key={restaurant.id} images={restaurant.images} />
+            <RestaurantReview reviews={restaurant.review} />
+          </div>
+        </div>
+        <div>
+          <div className='w-[100%] text-reg mt-5'>
+            <RestaurantReserveCard
+              key={restaurant.id}
+              openTime={restaurant.open_time}
+              closeTime={restaurant.close_time}
+            />
+          </div>
+        </div>
       </div>
     </>
   );
@@ -67,5 +82,5 @@ export default async function RestaurantDetailPage({ params }: Props) {
 
 export const metadata: Metadata = {
   title: 'Restaurant TEST - OpenTable',
-  description: 'Details about the TEST restaurant',
+  description: 'Details about TEST restaurant',
 };
